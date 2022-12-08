@@ -1,0 +1,89 @@
+JENKINS INSTALLATION 
+STEP : 1  launch the EC2 machine with port number 8080
+  
+  STEP : 2  
+            go to jenkins.io and get the links 
+            sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+            sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+  
+  STEP : 3 
+         install the dependies 
+         amazon-linux-extras install epel -y
+         yum install fontconfig java-11-openjdk  -y 
+         yum install  git maven jenkins -y 
+ 
+ STEP : 4
+          Now check weather jenkins is in active or inactive state using command 
+          command = systemctl status jenkins 
+          if the jenkins is inactive then 
+          command = systemctl restart or start jenkins 
+ 
+ finally jenkins is in running state 
+ 
+ STEP : 5 
+          Now connect the jenkins dashboard with public ip 
+          example = publicip:8080
+ 
+ STEP : 6 
+   To unlock jenkins : 
+      1. cat /var/lib/jenkins/secrets/initial/password  [here cat is read the text in file]
+      2. install suggested plugins 
+      3. add username password and mail id 
+      4. connect to dashboard 
+      
+      
+   
+
+
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('dad little prince') {
+            steps {
+                echo 'dad little prince'
+            }
+        }
+    }
+}
+
+
+
+
+pipeline{
+    agent any 
+    environment{
+        A = '8'
+    }
+    stages{
+        stage("stage-1"){
+            steps{
+                sh 'echo "${A}"'
+            }
+        }
+        stage("stage-2"){
+            steps{
+                sh 'echo "${A}"'
+            }
+        }
+        stage("stage-3"){
+            environment{
+                A = "55"
+            }
+            steps{
+                sh 'echo "${A}"'
+            }
+        }
+        stage("stage-4"){
+            steps{
+                sh 'echo "${A}"'
+            }
+        }
+    }
+}
+   
+      
